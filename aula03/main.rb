@@ -6,20 +6,20 @@ class ADF
   end
   
   # pega apenas um caracter
-  def proximo
-    puts "Índice  #{@indice}:"
+  def proximo()
+    # puts "Índice  #{@indice}:"
     if @indice == @max
-        ""
+      ""
     else
-        @cadeia[@indice]
+      @cadeia[@indice]
     end
   end
   
   def iniciar
     estado = "q0"
-    puts "Máquina iniciou no estado: " + estado
+    # puts "Máquina iniciou no estado: " + estado
     loop do
-      case [proximo, estado]
+      case [proximo(), estado]
       in ["b", "q0"]
         estado = "q0"
       in ["a", "q0"]
@@ -45,26 +45,36 @@ class ADF
       in ["b", "q5"]
         estado = "q0" 
       in ["", "q2"] # verificar
-        puts "Aceito 😀"
+        puts "✅"
         break
       in ["", "q3"]
-        puts "Aceito 😀"
-        break
+        return "✅"
       in ["", "q4"]
-        puts "Aceito 😀"
-      break
+        return "✅"
       else
-        puts "Erro"
-        break
+        return "❌"
       end
-  
       @indice += 1
-      puts "Cadeia: #{@cadeia[0..@indice]}" 
-      puts "Estado: #{estado}"
-      puts "\n"
+      # puts "Cadeia: #{@cadeia[0..@indice]}" 
+      # puts "Estado: #{estado}"
+      # puts "\n"
     end
   end
 end
-  
-adf = ADF.new("aabb")
-adf.iniciar
+
+cadeias = [
+  "aabb", 
+  "ab", 
+  "baab", 
+  "baaaaabaaabbbbaaaa", 
+  "aaaaa"
+]
+
+puts "Resultados:"
+puts "----------------------------"
+cadeias.each { |cadeia|
+  adf = ADF.new(cadeia)
+  resultado = adf.iniciar()
+  puts "#{cadeia} #{resultado}"
+}
+puts "----------------------------"
