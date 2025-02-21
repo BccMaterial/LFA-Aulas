@@ -5,19 +5,18 @@ class ADF
     @max = cadeia.size 
   end
   
-  # pega apenas um caracter
+  # iteração sobre os caractéres da cadeia
   def proximo()
-    # puts "Índice  #{@indice}:"
     if @indice == @max
-      ""
+      return ""
     else
-      @cadeia[@indice]
+      return @cadeia[@indice]
     end
   end
   
-  def iniciar
+  # teste de validação
+  def iniciar()
     estado = "q0"
-    # puts "Máquina iniciou no estado: " + estado
     loop do
       case [proximo(), estado]
       in ["b", "q0"]
@@ -44,9 +43,9 @@ class ADF
         estado = "q5"
       in ["b", "q5"]
         estado = "q0" 
-      in ["", "q2"] # verificar
-        puts "✅"
-        break
+      # validações
+      in ["", "q2"] 
+        return "✅"
       in ["", "q3"]
         return "✅"
       in ["", "q4"]
@@ -55,9 +54,6 @@ class ADF
         return "❌"
       end
       @indice += 1
-      # puts "Cadeia: #{@cadeia[0..@indice]}" 
-      # puts "Estado: #{estado}"
-      # puts "\n"
     end
   end
 end
