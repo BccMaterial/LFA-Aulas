@@ -38,8 +38,8 @@ class TuringMachine
       
       in [:q4, "a"]
         operar("a", :q1, :D)
-      in [:q4, " "]
-        operar(" ", :q8, :D)
+      in [:q4, "$"]
+        operar("$", :q8, :D)
 
       in [:q5, " "]
         operar(" ", :q5, :E)
@@ -63,7 +63,7 @@ class TuringMachine
         operar(" ", :q10, :E)
 
       in [:q10, "b"]
-        operar("d", :q10, :D)
+        operar("d", :q10, :E)
       in [:q10, " "]
         operar(" ", :q11, :E)
         return true

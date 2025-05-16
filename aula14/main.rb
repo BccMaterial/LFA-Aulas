@@ -1,6 +1,6 @@
 require './turing_machine.rb'
 
-input = "abb"
+input = "aabb"
 tm = TuringMachine.new
 puts "Entrada: #{input}"
 puts "Decidiu? #{tm.processar(input)}"
